@@ -11,6 +11,8 @@ const upload = () => {
    const handleFileSelect = (file: File | null) => {
         setFile(file)
     }
+
+    const handleAnalyze =  async ({ companyName, jobTile, jobDescription, file}: { companyNmae: string, jobTitle: string, jobDescription: string, file: File }) => 
     
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -22,9 +24,9 @@ const upload = () => {
         const jobTitle: FormDataEntryValue | null = formData.get('jpn-title');
         const jobDescription: FormDataEntryValue | null = formData.get('job-description');
         
-        console.log({
-            companyName, jobTitle, jobDescription, file
-        })
+        
+        if(!file) return;
+
     }
 
   return (
