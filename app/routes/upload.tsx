@@ -8,7 +8,7 @@ const upload = () => {
      
     const [file, setFile] = useState<File | null>(null);
 
-    const handleFileSelect = (file: File | null) => {
+   const handleFileSelect = (file: File | null) => {
         setFile(file)
     }
     
