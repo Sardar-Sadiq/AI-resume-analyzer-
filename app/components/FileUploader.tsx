@@ -1,5 +1,6 @@
 import React, {useCallback, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
+import { formatSize } from '~/lib/utils';
 
 interface FileUploaderProps {
   onFileSelect?: (file: File | null) => void;
@@ -14,13 +15,16 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
 
   }, [onFileSelect])
 
+  const maxFileSize = 20 * 1024 * 1024; 
   const {getRootProps, getInputProps, isDragActive, acceptedFiles} = useDropzone({onDrop,
     multiple: false,
     accept: { 'application/pdf': ['.pdf']},
-    maxSize: 20 * 1024 * 1024,
+    maxSize: maxFileSize,
   })
 
   const file = acceptedFiles[0] || null;
+
+
 
   return (
     <div className=' w-full gradient-border'>
@@ -31,8 +35,13 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
            <img src="/icons/info.svg" alt="upload" className='size-20' />
          </div>
          {file ? (
-            <div>
-
+            <div className='text-center'>
+                <p className='text-lg text-gray-700 font-medium truncate'>
+                  {file.name}
+                </p>
+                <p className='text-sm text-gray-500'>
+                    {formatSize}
+                </p>
             </div>
           ) : (
             <div>
@@ -42,7 +51,7 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
                       </span> or drag and drop
                   </p>
                   <p className='tex-lg text-gray-500'>
-                      PDF (max 20MB)
+                      PDF (max {formatSize(maxFileSize)})
                   </p>
             </div>
           )}
