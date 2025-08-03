@@ -22,7 +22,9 @@ const upload = () => {
         const jobTitle: FormDataEntryValue | null = formData.get('jpn-title');
         const jobDescription: FormDataEntryValue | null = formData.get('job-description');
         
-        
+        console.log({
+            companyName, jobTitle, jobDescription, file
+        })
     }
 
   return (
