@@ -12,7 +12,9 @@ const upload = () => {
         setFile(file)
     }
     
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {}
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        
+    }
 
   return (
     <main className="bg-[url('/images/bg-main.svg')] bg-cover">
