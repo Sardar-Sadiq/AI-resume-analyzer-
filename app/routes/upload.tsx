@@ -20,9 +20,7 @@ const upload = () => {
         if (!form) return;
         const formData: any = new FormData(form);
 
-        const companyName: FormDataEntryValue | null = formData.get('company-name');
-        const jobTitle: FormDataEntryValue | null = formData.get('jpn-title');
-        const jobDescription: FormDataEntryValue | null = formData.get('job-description');
+     
         
         
         if(!file) return;
