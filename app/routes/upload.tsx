@@ -12,7 +12,7 @@ const upload = () => {
         setFile(file)
     }
 
-    const handleAnalyze =  async ({ companyName, jobTile, jobDescription, file}: { companyNmae: string, jobTitle: string, jobDescription: string, file: File }) => 
+    const handleAnalyze =  async ({ companyName, jobTitle, jobDescription, file}: { companyName: string, jobTitle: string, jobDescription: string, file: File }) => {}
     
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
