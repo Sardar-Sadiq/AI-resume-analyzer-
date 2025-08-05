@@ -25,26 +25,11 @@ const upload = () => {
         if(!uploadedFile) return setStatusText('Error: Failed to upload file');
 
         setStatusText('Converting to image...');
-            
+
 
     }
     
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const form = e.currentTarget.closest('form');
-        if (!form) return;
-        const formData: any = new FormData(form);
-
-        const companyName: FormDataEntryValue | null = formData.get('company-name') as string;
-        const jobTitle: FormDataEntryValue | null = formData.get('jpn-title') as string;
-        const jobDescription: FormDataEntryValue | null = formData.get('job-description') as string;
-        
-        
-        if(!file) return;
-
-        handleAnalyze({ companyName, jobTitle, jobDescription, file })
-
-    }
+  
 
   return (
     <main className="bg-[url('/images/bg-main.svg')] bg-cover">
