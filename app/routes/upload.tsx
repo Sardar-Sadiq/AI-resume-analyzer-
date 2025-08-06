@@ -1,4 +1,4 @@
-import { prepareInstructions } from "constants";
+import {prepareInstructions} from "../../constants";
 import { type FormEvent, useState } from "react";
 import { useNavigate } from "react-router";
 import FileUploader from "~/components/FileUploader";
@@ -86,7 +86,7 @@ const upload = () => {
       "company-name"
     ) as string;
     const jobTitle: FormDataEntryValue | null = formData.get(
-      "jpn-title"
+      "job-title"
     ) as string;
     const jobDescription: FormDataEntryValue | null = formData.get(
       "job-description"
