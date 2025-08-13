@@ -90,7 +90,8 @@ const upload = () => {
       setStatusText('Analysis complete, redirecting...');
       
       
-   
+      // Navigate to results or wherever needed
+      // navigate(`/results/${uuid}`);
       
     } catch (error) {
       console.error("Analysis error:", error);
