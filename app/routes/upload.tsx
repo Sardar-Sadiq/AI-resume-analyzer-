@@ -91,7 +91,7 @@ const upload = () => {
       
       
       // Navigate to results or wherever needed
-      // navigate(`/results/${uuid}`);
+      navigate(`/resume/${uuid}`);
       
     } catch (error) {
       console.error("Analysis error:", error);
