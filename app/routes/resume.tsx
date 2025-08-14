@@ -21,7 +21,7 @@ const resume = () => {
              <section className='feedback-section '>
                 {imageUrl && resumeUrl && (
                     <div className='animate-in fade-in duration-1000 gradient-border max-sm:m-0 h-[90%] max-wxl:h-fit w-fit'>
-
+                            {/* 1:44:45 */}
                     </div>
                 )}
                 
