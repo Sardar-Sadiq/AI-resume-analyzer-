@@ -1,5 +1,6 @@
-import React from 'react'
-import { Link, useParams } from 'react-router'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router'
+import { usePuterStore } from '~/lib/puter'
 
 
 export const meta = () => ([
@@ -8,7 +9,38 @@ export const meta = () => ([
 ])
 
 const resume = () => {
+    const { auth, isLoading, fs, kv} = usePuterStore();
     const { id } = useParams();
+    const [imageUrl, setImageUrl] = useState('');
+    const [resumeUrl, setResumeUrl] = useState('');
+    const [feedback, setFeedback] = useState('');
+    const navigate = useNavigate();
+
+    useEffect(()=> {
+        const loadResume = async () => {
+            const resume = await kv.get(`resume: ${id}`);
+
+            if(!resume) return;
+
+            const data = JSON.parse(resume);
+
+
+            const resumeBlob = await fs.read(data.resumePath);
+            if(!resumeBlob) return;
+
+            const pdfBLod = new Blob([resumeBlob], {type: 'application/pdf'});
+            const resumeUrl = URL.createObjectURL(pdfBLod);
+            setResumeUrl(resumeUrl);
+
+            const imageBlob = await fs.read(data.imagePath);
+            if(!imageBlob) return;
+            const imageUrl = URL.createObjectURL(imageBlob);
+            setImageUrl(imageUrl);
+
+            setFeedback(data.feedback);
+        }
+        loadResume();
+    },[id]);
   return (
   <main className='!pt-0'>
         <nav className='resume-nav'>
@@ -21,7 +53,7 @@ const resume = () => {
              <section className='feedback-section '>
                 {imageUrl && resumeUrl && (
                     <div className='animate-in fade-in duration-1000 gradient-border max-sm:m-0 h-[90%] max-wxl:h-fit w-fit'>
-                            {/* 1:44:45 */}
+                            
                     </div>
                 )}
                 
