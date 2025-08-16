@@ -1,0 +1,5 @@
+interface ScoreBadgeProps {
+    score: number;
+}
+
+
