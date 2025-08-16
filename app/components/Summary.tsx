@@ -1,4 +1,5 @@
 
+import ScoreBadge from './ScoreBadge';
 import ScoreGauge from './ScoreGauge';
 
 const Categroy = ({title, score}: {title: string, score: number}) => {
@@ -12,7 +13,7 @@ const Categroy = ({title, score}: {title: string, score: number}) => {
           <div className='category'>
               <div className='flex flex-row gap-2 items-center justify-center'>
                 <p className='text-2xl'>{title}</p>
-                
+                <ScoreBadge score={score}/>
               </div>
               <p className='text-2xl'>
                     <span className={textColor}>{score}</span>/100
