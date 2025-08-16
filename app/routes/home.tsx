@@ -14,11 +14,23 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  const {  auth } = usePuterStore();
+  const {  auth, fs } = usePuterStore();
     const navigate: NavigateFunction = useNavigate();
+    
+
     useEffect(() => {
         if(!auth.isAuthenticated) navigate('/auth?next=/');
     }, [auth.isAuthenticated])
+
+//2:17:00
+    useEffect(() => {
+        const loadResume = async() => {
+            const blob = await fs.read(resume.imagePath);
+            if(!blob) return;
+            let url = URL.createObjectURL(blob);
+
+        }
+    }, []);
 
   return <main className="bg-[url('/images/bg-main.svg')] bg-cover">
     <Navbar/>
@@ -33,9 +45,9 @@ export default function Home() {
     {resumes.length > 0 && (
        <div className="resumes-section">
           {resumes.map( (resume) => (
-      <div>
+      
         <ResumeCard key={resume.id} resume={resume} />
-      </div>
+      
     ))}
     </div>
     )}
