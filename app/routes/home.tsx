@@ -22,7 +22,7 @@ export default function Home() {
         if(!auth.isAuthenticated) navigate('/auth?next=/');
     }, [auth.isAuthenticated])
 
-//2:17:00 start from here another day for another commit
+//2:17:00 start from here another day for another commit ok one last time
     useEffect(() => {
         const loadResume = async() => {
             const blob = await fs.read(resume.imagePath);
