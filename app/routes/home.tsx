@@ -1,9 +1,8 @@
 import type { Route } from "./+types/home";
 import Navbar from "~/components/Navbar";
-import { resumes } from "../../constants";
 import ResumeCard from "~/components/ResumeCard";
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, type NavigateFunction } from "react-router";
+import {  useNavigate, type NavigateFunction } from "react-router";
 import { usePuterStore } from "~/lib/puter";
 
 export function meta({}: Route.MetaArgs) {
@@ -27,12 +26,13 @@ export default function Home() {
     const loadResumes: () => Promise<void> = async () => {
       setLoadingResumes(true);
 
-      const resumes = (await kv.list('resumes:*', true)) as KVItem[];
+      const resumes = (await kv.list('resume:*', true)) as KVItem[];
 
       const parsedResumes = resumes ?.map((resume) => (
         JSON.parse(resume.value) as Resume
       ))
 
+      console.log("parsedResumes", parsedResumes)
       setResumes(parsedResumes || []);
       setLoadingResumes(false);
     };
@@ -51,7 +51,7 @@ export default function Home() {
           <h2>Review your submissions and check AI-powered feedback.</h2>
         </div>
 
-        {resumes.length > 0 && (
+        {!loadingResumes && resumes.length > 0 && (
           <div className="resumes-section">
             {resumes.map((resume) => (
               <ResumeCard key={resume.id} resume={resume} />
