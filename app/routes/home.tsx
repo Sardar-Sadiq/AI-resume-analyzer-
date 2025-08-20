@@ -1,10 +1,10 @@
 import type { Route } from "./+types/home";
 import Navbar from "~/components/Navbar";
-import {resumes} from "../../constants";
+import { resumes } from "../../constants";
 import ResumeCard from "~/components/ResumeCard";
-import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate, type NavigateFunction } from 'react-router';
-import { usePuterStore } from '~/lib/puter'
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate, type NavigateFunction } from "react-router";
+import { usePuterStore } from "~/lib/puter";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -14,44 +14,53 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  const {  auth, kv } = usePuterStore();
-    const navigate: NavigateFunction = useNavigate();
-    const [resumes, setResumes] = useState<Resume[]>([]);
-    const [loadingResumes, setLoadingResumes] = useState(false);
-    
- 
-    useEffect(() => {
-        if(!auth.isAuthenticated) navigate('/auth?next=/');
-    }, [auth.isAuthenticated])
+  const { auth, kv } = usePuterStore();
+  const navigate: NavigateFunction = useNavigate();
+  const [resumes, setResumes] = useState<Resume[]>([]);
+  const [loadingResumes, setLoadingResumes] = useState(false);
 
-    useEff
+  useEffect(() => {
+    if (!auth.isAuthenticated) navigate("/auth?next=/");
+  }, [auth.isAuthenticated]);
 
-//2:17:00 start from here another day for another commit ok one last time
-    
+  useEffect(() => {
+    const loadResumes: () => Promise<void> = async () => {
+      setLoadingResumes(true);
 
-  return <main className="bg-[url('/images/bg-main.svg')] bg-cover">
-    <Navbar/>
+      const resumes = (await kv.list('resumes:*', true)) as KVItem[];
 
-    <section className="main-section">
-      <div className="page-heading py-16">
+      const parsedResumes = resumes ?.map((resume) => (
+        JSON.parse(resume.value) as Resume
+      ))
+
+      setResumes(parsedResumes || []);
+      setLoadingResumes(false);
+    };
+    loadResumes();
+  }, []);
+
+  //2:17:00 start from here another day for another commit ok one last time
+
+  return (
+    <main className="bg-[url('/images/bg-main.svg')] bg-cover">
+      <Navbar />
+
+      <section className="main-section">
+        <div className="page-heading py-16">
           <h1>Track Your Applications & Resume Ratings</h1>
           <h2>Review your submissions and check AI-powered feedback.</h2>
-      </div>
-    
+        </div>
 
-    {resumes.length > 0 && (
-       <div className="resumes-section">
-          {resumes.map( (resume) => (
-      
-        <ResumeCard key={resume.id} resume={resume} />
-      
-    ))}
-    </div>
-    )}
-   
-    </section>
-  </main>;
+        {resumes.length > 0 && (
+          <div className="resumes-section">
+            {resumes.map((resume) => (
+              <ResumeCard key={resume.id} resume={resume} />
+            ))}
+          </div>
+        )}
+      </section>
+    </main>
+  );
 }
-
 
 // 34:47
