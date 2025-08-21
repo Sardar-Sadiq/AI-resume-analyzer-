@@ -39,7 +39,7 @@ export default function Home() {
     loadResumes();
   }, []);
 
-  //2:17:00 start from here another day for another commit ok one last time
+  //2:17:00 start from here another day for another commit ok one last time after doing work on this project one day and another day only commit >_<! 
 
   return (
     <main className="bg-[url('/images/bg-main.svg')] bg-cover">
