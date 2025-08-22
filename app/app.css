@@ -129,12 +129,12 @@ form {
 }
 
 @utility primary-gradient {
-  background: linear-gradient(to bottom, #8e98ff, #606beb);
+  background: linear-gradient(to bottom, #E88EFF, #D860EB);
   box-shadow: 0px 74px 21px 0px #6678ef00;
 }
 
 @utility primary-gradient-hover {
-  background: linear-gradient(to bottom, #717dff, #4957eb);
+  background: linear-gradient(to bottom, #D971FF, #CB49EB);
 }
 
 @utility inset-shadow {
