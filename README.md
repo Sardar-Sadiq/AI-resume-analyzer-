@@ -1,4 +1,4 @@
-##AI RESUME ANALYZER
+## AI RESUME ANALYZER
 ## Features
 
 - 🚀 Server-side rendering
